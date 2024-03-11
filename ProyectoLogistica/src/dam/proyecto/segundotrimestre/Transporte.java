@@ -1,4 +1,7 @@
 package dam.proyecto.segundotrimestre;
+
+import dam.proyecto.state.Seguimiento;
+
 /**
  * Clase Transporte en la cual se indicaran sus atributos, requisitos para crear un objeto a 
  * traves del contructor y metodos necesarios para trabajar con la clase.
@@ -6,26 +9,32 @@ package dam.proyecto.segundotrimestre;
  * @version 1.0
  */
 public class Transporte {
-	private int numTransporte;
+	private int numTransporte=1;
 	private Cliente cliente;
 	private Destinatario destinatario;
 	private Vehiculo vehiculo;
 	private int numBultos;
 	private int peso;
+	private double precio;
 	private String localidad;
 	private boolean costePorte;
-	
-	public Transporte(int numTransporte, Cliente cliente, Destinatario destinatario, Vehiculo vehiculo, int numBultos,
-			int peso, String localidad, boolean costePorte) {
-		this.numTransporte = numTransporte;
+	private Seguimiento estado;
+
+	//contructor
+	public Transporte(Cliente cliente, Destinatario destinatario, Vehiculo vehiculo, int numBultos,
+			int peso,double precio, String localidad, boolean costePorte) {
+		this.numTransporte = numTransporte++;
 		this.cliente = cliente;
 		this.destinatario = destinatario;
 		this.vehiculo = vehiculo;
 		this.numBultos = numBultos;
 		this.peso = peso;
+		this.precio=precio;
 		this.localidad = localidad;
 		this.costePorte = costePorte;
 	}
+
+	//metodos get y set para obtener y asignar valores
 	public int getNumTransporte() {
 		return numTransporte;
 	}
@@ -62,6 +71,13 @@ public class Transporte {
 	public void setPeso(int peso) {
 		this.peso = peso;
 	}
+
+	public double getPrecio() {
+		return precio;
+	}
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
 	public String getLocalidad() {
 		return localidad;
 	}
@@ -74,4 +90,14 @@ public class Transporte {
 	public void setCostePorte(boolean costePorte) {
 		this.costePorte = costePorte;
 	}
+
+	public void setEstado(Seguimiento estado) {
+		this.estado = estado;
+	}
+
+	//metodo para consultar el estado del transporte (Relacionado con el patron de estado)
+	public void ConsultarSeguimiento() {
+		estado.info();
+	}
+
 }
